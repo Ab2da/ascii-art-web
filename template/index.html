@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII-Art-Web</title>
+  </head>
+<style>
+  body {
+    background-image: url("./background/asciiart.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;    
+  }
+</style>
+<body>
+    <br />
+    <h3 align="justify">
+        <font face="Fantasy" size="6">ASCII-Art-Web</font>
+    </h3>
+  <form action="/ascii-art" method="POST">
+    
+
+    <p align="justify">
+      <label for="requests"></label>
+      <br>
+      <textarea name="request" rows="8" cols="32" placeholder="Type the text for ASCII-Art conversion"></textarea>
+    </p>
+    <p align="justify">
+      <label for="textfile"><b><font face="Fantasy" size="6">Select a font:</font></b></label>
+      <select name="font" id="font" size="1">
+        <option value="standard">standard</option>
+        <option value="shadow">shadow</option>
+        <option value="thinkertoy">thinkertoy</option>
+      </select>
+    </p>
+    <p align="justify">  
+      <input type="submit" value="Submit" class="form-submit-button" style="border-radius:5px;height:40px;width:100px">
+    </p>
+
+    </form>
+
+  </form>
+</body>
+
+</html>
