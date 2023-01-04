@@ -29,7 +29,7 @@ func ascii_finder(w http.ResponseWriter, r *http.Request) {
 	text := r.FormValue("request")
 	font = font + ".txt"
 	if text == "" || font == "" || strings.Contains(text, "£") {
-		showError(w, "400 BAD REQUEST", http.StatusBadRequest)
+		showError(w, "404 BANNER NOT FOUND", http.StatusNotFound)
 		return
 	}
 	args := strings.Split(text, "\r\n")
@@ -40,7 +40,8 @@ func ascii_finder(w http.ResponseWriter, r *http.Request) {
 			for _, letter := range word {
 				returna := GetLine((1 + int(letter-' ')*9 + i), font, w)
 				if returna == "abort" {
-					showError(w, "500 INTERNAL SERVER ERROR", http.StatusInternalServerError)
+					//not an internal error!! fix this - bad request - **
+					showError(w, "400 BAD REQUEST", http.StatusBadRequest)
 					return
 				} else {
 					// if letter < 32 || letter > ? showError(w, "400 BAD REQUEST", http.StatusBadRequest)
@@ -75,14 +76,14 @@ func GetLine(num int, filename string, w http.ResponseWriter) string {
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" && r.URL.Path != "/" {
-		showError(w, "404 PAGE NOT FOUND", http.StatusNotFound)
+		showError(w, "400 BAD REQUEST", http.StatusBadRequest)
 		// return here will stop executing this function
 		return
 	}
 	// Render  index.html template - server not working(difficult to test)
 	t, err := template.ParseFiles(templatePath)
 	if err != nil {
-		showError(w, "500 INTERNAL SERVER ERROR5", http.StatusInternalServerError)
+		showError(w, "404 TEMPLATE NOT FOUND", http.StatusNotFound)
 		return
 	}
 
